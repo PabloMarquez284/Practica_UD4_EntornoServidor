@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Detalle - <%= equipo.codigo %></title>
+</head>
+<body>
+    <h1><%= equipo.nombre %> (<%= equipo.codigo %>)</h1>
+
+    <ul>
+        <li><strong>Código:</strong> <%= equipo.codigo %></li>
+        <li><strong>Nombre:</strong> <%= equipo.nombre %></li>
+        <li><strong>Categoría:</strong> <%= equipo.categoria %></li>
+        <li><strong>Estado actual:</strong> <%= equipo.disponible ? 'Disponible' : 'Prestado' %></li>
+    </ul>
+
+    <!-- Si está prestado actualmente, mostramos quién lo tiene -->
+    <% if (!equipo.disponible && equipo.usuario_actual) { %>
+        <p>
+            <strong>Prestado actualmente a:</strong> <%= equipo.usuario_actual %>
+            (desde el <%= equipo.fecha_prestamo_actual_texto %>)
+        </p>
+    <% } %>
+
+    <h2>Historial de préstamos</h2>
+
+    <% if (equipo.historial.length === 0) { %>
+        <p>Este equipo no tiene préstamos registrados todavía.</p>
+    <% } else { %>
+        <table border="1" cellpadding="6">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Fecha de préstamo</th>
+                    <th>Fecha de devolución</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (const p of equipo.historial) { %>
+                    <tr>
+                        <td><%= p.usuario %></td>
+                        <td><%= p.fecha_prestamo_texto %></td>
+                        <td><%= p.fecha_devolucion_texto %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <p><a href="/equipos">Volver al listado</a></p>
+</body>
+</html>

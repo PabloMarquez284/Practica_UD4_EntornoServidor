@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Listado de equipos</title>
+</head>
+<body>
+    <h1>Inventario de material informático</h1>
+
+    <!-- Formulario GET sencillo para buscar, filtrar y ordenar -->
+    <form action="/equipos" method="get">
+        <label>
+            Buscar por nombre:
+            <input type="text" name="q" value="<%= filtros.q %>" maxlength="80">
+        </label>
+
+        <label>
+            Categoría:
+            <select name="categoria">
+                <option value="">Todas</option>
+                <% for (const cat of categorias) { %>
+                    <option value="<%= cat %>" <%= filtros.categoria === cat ? 'selected' : '' %>>
+                        <%= cat %>
+                    </option>
+                <% } %>
+            </select>
+        </label>
+
+        <label>
+            Estado:
+            <select name="disponible">
+                <option value="" <%= filtros.disponible === '' ? 'selected' : '' %>>Todos</option>
+                <option value="true" <%= filtros.disponible === 'true' ? 'selected' : '' %>>Disponibles</option>
+                <option value="false" <%= filtros.disponible === 'false' ? 'selected' : '' %>>Prestados</option>
+            </select>
+        </label>
+
+        <label>
+            Ordenar por:
+            <select name="orden">
+                <option value="codigo" <%= filtros.orden === 'codigo' ? 'selected' : '' %>>Código</option>
+                <option value="nombre" <%= filtros.orden === 'nombre' ? 'selected' : '' %>>Nombre</option>
+            </select>
+        </label>
+
+        <button type="submit">Filtrar</button>
+        <a href="/equipos">Limpiar</a>
+    </form>
+
+    <hr>
+
+    <!-- Mensaje claro si no hay coincidencias -->
+    <% if (equipos.length === 0) { %>
+        <p>No se encontraron equipos con los criterios seleccionados.</p>
+    <% } else { %>
+        <table border="1" cellpadding="6">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (const eq of equipos) { %>
+                    <tr>
+                        <td><%= eq.codigo %></td>
+                        <td><a href="/equipos/<%= eq.id %>"><%= eq.nombre %></a></td>
+                        <td><%= eq.categoria %></td>
+                        <td><%= eq.disponible ? 'Disponible' : 'Prestado' %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    <% } %>
+
+    <!-- Controles de paginación conservando los filtros activos -->
+    <p>Página <%= pagina %></p>
+    <nav>
+        <% if (anterior) { %>
+            <a href="<%= anterior %>">Anterior</a>
+        <% } %>
+        <% if (siguiente) { %>
+            <a href="<%= siguiente %>">Siguiente</a>
+        <% } %>
+    </nav>
+</body>
+</html>

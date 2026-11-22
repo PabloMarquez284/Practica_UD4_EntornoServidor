@@ -4,6 +4,8 @@
 
 Esta aplicación web está desarrollada en **Node.js (Express 5)** con vistas renderizadas en servidor mediante **EJS** y persistencia relacional en **PostgreSQL 18** sobre **Docker**. Permite consultar el inventario de equipos con filtros y paginación, gestionar altas, modificaciones y bajas mediante una API REST, y registrar préstamos y devoluciones de forma atómica mediante transacciones SQL.
 
+Este trabajo lo he realizado junto con el apoyo de la IA, guiándome paso a paso y ayudándome en los errores que he tenido. Dejo por aquí el enlace al chat con Gemini: https://gemini.google.com/share/d/1zsWl85ywpC0J5yGIy2PrNGgCdz5xLB9L?usp=sharing
+
 ## Estructura del proyecto
 
 **Archivos de infraestructura y configuración (raíz del proyecto):** En la raíz se alojan `compose.yaml`, `init.sql`, `.env.example` y `package.json`. El archivo `compose.yaml` levanta el contenedor de PostgreSQL 18, mientras que `init.sql` define el esquema `practica_prestamos`, las tablas (`equipos`, `usuarios` y `prestamos`), sus restricciones de integridad, el índice único parcial para préstamos activos y los datos iniciales de prueba. Por su parte, `package.json` declara las dependencias (`express`, `pg` y `ejs`) y `.env.example` documenta las variables de entorno necesarias.

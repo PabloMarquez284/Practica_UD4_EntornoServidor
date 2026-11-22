@@ -13,6 +13,7 @@ const prestamos = crearServicioPrestamos(pool); // Instanciamos el servicio con 
 // Configuración de plantillas EJS
 app.set('view engine', 'ejs');
 app.set('views', fileURLToPath(new URL('../views/', import.meta.url)));
+app.use(express.static('public')); // Servir css desde la carpeta 'public'
 
 app.use(express.json({ limit: '10kb' }));
 

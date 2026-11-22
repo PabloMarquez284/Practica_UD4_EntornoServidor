@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Listado de equipos</title>
+    <link rel="stylesheet" href="/css/estilos.css">
 </head>
 <body>
     <h1>Inventario de material informático</h1>
@@ -53,7 +54,7 @@
     <% if (equipos.length === 0) { %>
         <p>No se encontraron equipos con los criterios seleccionados.</p>
     <% } else { %>
-        <table border="1" cellpadding="6">
+        <table>
             <thead>
                 <tr>
                     <th>Código</th>
@@ -68,7 +69,11 @@
                         <td><%= eq.codigo %></td>
                         <td><a href="/equipos/<%= eq.id %>"><%= eq.nombre %></a></td>
                         <td><%= eq.categoria %></td>
-                        <td><%= eq.disponible ? 'Disponible' : 'Prestado' %></td>
+                        <td>
+                            <span class="<%= eq.disponible ? 'estado-disponible' : 'estado-prestado' %>">
+                                <%= eq.disponible ? 'Disponible' : 'Prestado' %>
+                            </span>
+                        </td>
                     </tr>
                 <% } %>
             </tbody>

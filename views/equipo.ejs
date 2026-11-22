@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Detalle - <%= equipo.codigo %></title>
+    <link rel="stylesheet" href="/css/estilos.css">
 </head>
 <body>
     <h1><%= equipo.nombre %> (<%= equipo.codigo %>)</h1>
@@ -11,7 +12,12 @@
         <li><strong>Código:</strong> <%= equipo.codigo %></li>
         <li><strong>Nombre:</strong> <%= equipo.nombre %></li>
         <li><strong>Categoría:</strong> <%= equipo.categoria %></li>
-        <li><strong>Estado actual:</strong> <%= equipo.disponible ? 'Disponible' : 'Prestado' %></li>
+        <li>
+            <strong>Estado actual:</strong>
+            <span class="<%= equipo.disponible ? 'estado-disponible' : 'estado-prestado' %>">
+                <%= equipo.disponible ? 'Disponible' : 'Prestado' %>
+            </span>
+        </li>
     </ul>
 
     <!-- Si está prestado actualmente, mostramos quién lo tiene -->
@@ -27,7 +33,7 @@
     <% if (equipo.historial.length === 0) { %>
         <p>Este equipo no tiene préstamos registrados todavía.</p>
     <% } else { %>
-        <table border="1" cellpadding="6">
+        <table>
             <thead>
                 <tr>
                     <th>Usuario</th>

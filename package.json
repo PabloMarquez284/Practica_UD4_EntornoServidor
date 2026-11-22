@@ -1,0 +1,26 @@
+{
+  "name": "practica_ud4_entornoservidor",
+  "version": "1.0.0",
+  "description": "Un centro educativo necesita gestionar los equipos que presta temporalmente a su alumnado y personal: portátiles, tabletas, proyectores y otros dispositivos. Desarrollarás una aplicación web que mantenga el inventario y permita realizar préstamos y devoluciones sin perder la coherencia de los datos.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PabloMarquez284/Practica_UD4_EntornoServidor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/PabloMarquez284/Practica_UD4_EntornoServidor/issues"
+  },
+  "homepage": "https://github.com/PabloMarquez284/Practica_UD4_EntornoServidor#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.3.0",
+    "pg": "^8.23.1"
+  }
+}
